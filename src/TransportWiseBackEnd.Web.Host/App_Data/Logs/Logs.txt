@@ -1,0 +1,92 @@
+DEBUG 2020-04-11 16:16:15,902 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:15,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:15,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:15,919 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:15,920 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:15,947 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-04-11 16:16:16,092 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-04-11 16:16:16,092 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-04-11 16:16:16,092 [1    ] o.Configuration.LanguageManagementConfig - Converted TransportWiseBackEnd (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-04-11 16:16:16,092 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-04-11 16:16:16,845 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: TransportWiseBackEnd.EntityFrameworkCore.TransportWiseBackEndDbContext, TransportWiseBackEnd.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-04-11 16:16:19,603 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-04-11 16:16:19,684 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-04-11 16:16:19,750 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-04-11 16:16:19,767 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: TransportWiseBackEnd
+DEBUG 2020-04-11 16:16:19,782 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-04-11 16:16:20,290 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-04-11 16:16:20,629 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2020-04-11 16:16:20,745 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-04-11 16:16:20,745 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-04-11 16:16:20,761 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Users.Dto.CreateUserDto
+DEBUG 2020-04-11 16:16:20,762 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Users.Dto.UserDto
+DEBUG 2020-04-11 16:16:20,764 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-04-11 16:16:20,764 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-04-11 16:16:20,764 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.Roles.Dto.PermissionDto
+DEBUG 2020-04-11 16:16:20,765 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-04-11 16:16:20,765 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - TransportWiseBackEnd.MultiTenancy.Dto.TenantDto
+INFO  2020-04-11 16:16:31,540 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-04-11 16:16:31,540 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2020-04-11 16:16:31,707 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 181.9128ms 200 
+INFO  2020-04-11 16:16:32,069 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host)'
+INFO  2020-04-11 16:16:37,708 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host)
+INFO  2020-04-11 16:16:39,491 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host) - Validation state: Valid
+INFO  2020-04-11 16:16:39,500 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 3.0229ms.
+INFO  2020-04-11 16:16:39,957 [14   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-04-11 16:16:39,983 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host) in 2264.9671ms
+INFO  2020-04-11 16:16:39,989 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'TransportWiseBackEnd.Web.Host.Controllers.HomeController.Index (TransportWiseBackEnd.Web.Host)'
+INFO  2020-04-11 16:16:40,024 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-04-11 16:16:40,032 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 8510.7376ms 302 
+INFO  2020-04-11 16:16:40,418 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 394.451ms 200 text/html
+INFO  2020-04-11 16:16:40,689 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-04-11 16:16:41,348 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 659.3563ms 200 application/json;charset=utf-8
+INFO  2020-04-11 16:18:34,645 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/Account/Register application/json-patch+json 135
+INFO  2020-04-11 16:18:34,700 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2020-04-11 16:18:34,722 [4    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2020-04-11 16:18:34,732 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)'
+INFO  2020-04-11 16:18:34,763 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Register", controller = "Account"}. Executing action TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)
+INFO  2020-04-11 16:18:34,765 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2020-04-11 16:18:34,768 [4    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2020-04-11 16:18:35,553 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application) with arguments (TransportWiseBackEnd.Authorization.Accounts.Dto.RegisterInput) - Validation state: Valid
+ERROR 2020-04-11 16:20:06,094 [26   ] Mvc.ExceptionHandling.AbpExceptionFilter - Can not register host users!
+System.InvalidOperationException: Can not register host users!
+   at TransportWiseBackEnd.Authorization.Users.UserRegistrationManager.CheckForTenant() in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Core\Authorization\Users\UserRegistrationManager.cs:line 79
+   at TransportWiseBackEnd.Authorization.Users.UserRegistrationManager.RegisterAsync(String name, String surname, String emailAddress, String userName, String plainPassword, Boolean isEmailConfirmed) in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Core\Authorization\Users\UserRegistrationManager.cs:line 42
+   at TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register(RegisterInput input) in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Application\Authorization\Accounts\AccountAppService.cs:line 40
+   at lambda_method(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2020-04-11 16:20:06,659 [26   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-04-11 16:20:06,685 [26   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application) in 91919.8921ms
+INFO  2020-04-11 16:20:06,687 [26   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)'
+INFO  2020-04-11 16:20:06,691 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 92046.809ms 500 application/json; charset=utf-8
+INFO  2020-04-11 16:20:30,020 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/Account/Register application/json-patch+json 143
+INFO  2020-04-11 16:20:30,022 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2020-04-11 16:20:30,025 [26   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2020-04-11 16:20:30,036 [26   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)'
+INFO  2020-04-11 16:20:30,045 [26   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Register", controller = "Account"}. Executing action TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)
+INFO  2020-04-11 16:20:30,048 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2020-04-11 16:20:30,051 [26   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2020-04-11 16:20:30,087 [26   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application) with arguments (TransportWiseBackEnd.Authorization.Accounts.Dto.RegisterInput) - Validation state: Valid
+ERROR 2020-04-11 16:22:40,500 [36   ] Mvc.ExceptionHandling.AbpExceptionFilter - Can not register host users!
+System.InvalidOperationException: Can not register host users!
+   at TransportWiseBackEnd.Authorization.Users.UserRegistrationManager.CheckForTenant() in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Core\Authorization\Users\UserRegistrationManager.cs:line 79
+   at TransportWiseBackEnd.Authorization.Users.UserRegistrationManager.RegisterAsync(String name, String surname, String emailAddress, String userName, String plainPassword, Boolean isEmailConfirmed) in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Core\Authorization\Users\UserRegistrationManager.cs:line 42
+   at TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register(RegisterInput input) in C:\Users\User\Documents\4.8.0\aspnet-core\src\TransportWiseBackEnd.Application\Authorization\Accounts\AccountAppService.cs:line 40
+   at lambda_method(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2020-04-11 16:22:40,519 [36   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-04-11 16:22:40,521 [36   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application) in 130473.969ms
+INFO  2020-04-11 16:22:40,525 [36   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'TransportWiseBackEnd.Authorization.Accounts.AccountAppService.Register (TransportWiseBackEnd.Application)'
+INFO  2020-04-11 16:22:40,528 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 130508.0321ms 500 application/json; charset=utf-8
