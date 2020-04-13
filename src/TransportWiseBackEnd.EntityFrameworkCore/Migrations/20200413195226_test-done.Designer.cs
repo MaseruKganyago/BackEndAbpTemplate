@@ -10,8 +10,8 @@ using TransportWiseBackEnd.EntityFrameworkCore;
 namespace TransportWiseBackEnd.Migrations
 {
     [DbContext(typeof(TransportWiseBackEndDbContext))]
-    [Migration("20200411113510_test1")]
-    partial class test1
+    [Migration("20200413195226_test-done")]
+    partial class testdone
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1036,24 +1036,120 @@ namespace TransportWiseBackEnd.Migrations
                     b.ToTable("AbpUsers");
                 });
 
-            modelBuilder.Entity("TransportWiseBackEnd.Models.ArticleModel", b =>
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Article", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired();
 
-                    b.Property<string>("Description");
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Image");
 
-                    b.Property<string>("Title");
+                    b.Property<DateTime?>("LastModificationTime");
 
-                    b.Property<string>("UserName");
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Article");
+                });
+
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Driverexperience")
+                        .IsRequired();
+
+                    b.Property<string>("Jobtitle");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Surname")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Filestorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Contentstype")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Filename")
+                        .IsRequired();
+
+                    b.Property<string>("Filepath")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileStorage");
+                });
+
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Fuelwise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Body")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FuelWise");
                 });
 
             modelBuilder.Entity("TransportWiseBackEnd.MultiTenancy.Tenant", b =>

@@ -1,55 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TransportWiseBackEnd.EntityFrameworkCore;
-using TransportWiseBackEnd.Models;
-using TransportWiseBackEnd.Models.FuelWise;
+using TransportWiseBackEnd.FuelWise.Dto;
+using TransportWiseBackEnd.FuelWise;
 
 namespace TransportWiseBackEnd.Controllers
 {
 	[Route("api/[controller]/[action]")]
-	public class FuelWiseController : TransportWiseBackEndControllerBase
+	public class FuelwiseController : TransportWiseBackEndControllerBase
 	{
-		private readonly TransportWiseBackEndDbContext _context;
+		private readonly IFuelwiseAppService _fuelwiseAppService;
 		private readonly IMapper _mapper;
 
-		public FuelWiseController(TransportWiseBackEndDbContext context, IMapper mapper)
+		public FuelwiseController(IFuelwiseAppService fuelwiseAppService, IMapper mapper)
 		{
-			_context = context;
+			_fuelwiseAppService = fuelwiseAppService;
 			_mapper = mapper;
 		}
 
 		// GET: api/FuelWises
 		[HttpGet]
 		[Authorize]
-		public IEnumerable<FuelWiseDTO> GetFuelWise()
+		public IEnumerable<FuelwiseDTO> GetFuelWise()
 		{
-			var tips = _context.FuelWise.ToList();
-			var tipsDTO = _mapper.Map<List<FuelWiseDTO>>(tips);
-
+			var tips = _fuelwiseAppService.GetAll();
+			var tipsDTO = _mapper.Map<List<FuelwiseDTO>>(tips);
 			return tipsDTO;
 		}
 
 		// GET: api/FuelWises/5
-		[HttpGet("{id}")]
+		[HttpGet("{Id}")]
 		[Authorize]
-		public async Task<ActionResult<FuelWiseDTO>> GetFuelWise([FromRoute] Guid id)
+		public async Task<ActionResult<FuelwiseDTO>> GetFuelWise([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var tip = await _context.FuelWise.FindAsync(id);
-			var tipDTO = _mapper.Map<FuelWiseDTO>(tip);
+			var tip = await _fuelwiseAppService.GetFuelwise(Id);
+			var tipDTO = _mapper.Map<FuelwiseDTO>(tip);
 
-			if (tipDTO == null)
+			if (tip == null)
 			{
 				return NotFound();
 			}
@@ -58,83 +53,58 @@ namespace TransportWiseBackEnd.Controllers
 		}
 
 		// PUT: api/FuelWises/5
-		[HttpPut("{id}")]
+		[HttpPut("{Id}")]
 		[Authorize]
-		public async Task<IActionResult> PutFuelWise([FromRoute] Guid id, [FromBody] FuelWiseModel fuelWise)
+		public async Task<IActionResult> PutFuelWise([FromRoute] int Id, [FromBody] FuelwiseDTO fuelWise)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			if (id != fuelWise.Id)
+			if (Id != fuelWise.Id)
 			{
 				return BadRequest();
 			}
 
-			_context.Entry(fuelWise).State = EntityState.Modified;
+			var newTip = await _fuelwiseAppService.PutFuelwise(Id, fuelWise);
+			var newTipDTO = ObjectMapper.Map<FuelwiseDTO>(newTip);
 
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!FuelWiseExists(id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
-			}
-
-			return NoContent();
+			return Ok(newTipDTO);
 		}
 
 		// POST: api/FuelWises
 		[HttpPost]
 		[Authorize]
-		public async Task<IActionResult> PostFuelWise([FromBody] FuelWiseDTO fuelWise)
+		public async Task<IActionResult> PostFuelWise([FromBody] FuelwiseDTO fuelWise)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var holder = _mapper.Map<FuelWiseModel>(fuelWise);
-			_context.FuelWise.Add(holder);
-			await _context.SaveChangesAsync();
+			var newTip = await _fuelwiseAppService.PostFuelwise(fuelWise);
 
-			return CreatedAtAction("GetFuelWise", new { id = fuelWise.Id }, fuelWise);
+			return Ok(newTip);
 		}
 
 		// DELETE: api/FuelWises/5
-		[HttpDelete("{id}")]
+		[HttpDelete("{Id}")]
 		[Authorize]
-		public async Task<IActionResult> DeleteFuelWise([FromRoute] Guid id)
+		public async Task<IActionResult> DeleteFuelWise([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var fuelWise = await _context.FuelWise.FindAsync(id);
-			if (fuelWise == null)
+			var deletedTip = await _fuelwiseAppService.DeleteFuelwise(Id);
+			if (deletedTip == null)
 			{
-				return NotFound();
+				return NotFound("Failed to delete, Author not found or invalid authorId.");
 			}
 
-			_context.FuelWise.Remove(fuelWise);
-			await _context.SaveChangesAsync();
-
-			return Ok(fuelWise);
-		}
-
-		private bool FuelWiseExists(Guid id)
-		{
-			return _context.FuelWise.Any(e => e.Id == id);
+			return Ok(deletedTip);
 		}
 	}
 }
