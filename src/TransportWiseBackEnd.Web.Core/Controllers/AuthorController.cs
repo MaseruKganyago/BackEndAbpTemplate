@@ -1,51 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TransportWiseBackEnd.EntityFrameworkCore;
-using TransportWiseBackEnd.Models;
-using TransportWiseBackEnd.Models.Author.DTO;
+using TransportWiseBackEnd.Domain;
+using TransportWiseBackEnd.Authors;
+using TransportWiseBackEnd.Authors.Dto;
 
 namespace TransportWiseBackEnd.Controllers
 {
 	[Route("api/[controller]/[action]")]
 	public class AuthorsController : TransportWiseBackEndControllerBase
 	{
-		private readonly TransportWiseBackEndDbContext _context;
+		private readonly IAuthorAppService _authorAppService;
 		private readonly IMapper _mapper;
 
-		public AuthorsController(TransportWiseBackEndDbContext context, IMapper mapper)
+		public AuthorsController(IAuthorAppService authorAppService, IMapper mapper)
 		{
-			_context = context;
+			_authorAppService = authorAppService;
 			_mapper = mapper;
 		}
 
 		// GET: api/Authors
 		[HttpGet]
 		[Authorize]
-		public IEnumerable<AuthorDTO> GetAuthor()
+		public IEnumerable<AuthorDTO> GetAuthors()
 		{
-			var authors = _context.Authors.ToList();
+			var authors = _authorAppService.GetAll();
 			var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
 			return authorsDTO;
 		}
 
 		// GET: api/Authors/5
-		[HttpGet("{id}")]
+		[HttpGet("{Id}")]
 		[Authorize]
-		public async Task<ActionResult<AuthorDTO>> GetAuthor([FromRoute] Guid id)
+		public async Task<ActionResult<AuthorDTO>> GetAuthor([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var author = await _context.Authors.FindAsync(id);
+			var author = await _authorAppService.GetAuthor(Id);
 			var authorDTO = _mapper.Map<AuthorDTO>(author);
 
 			if (author == null)
@@ -59,37 +58,22 @@ namespace TransportWiseBackEnd.Controllers
 		// PUT: api/Authors/5
 		[HttpPut("{id}")]
 		[Authorize]
-		public async Task<IActionResult> PutAuthor([FromRoute] Guid id, [FromBody] AuthorDTO author)
+		public async Task<IActionResult> UpdateAuthor([FromRoute] int Id, [FromBody] AuthorDTO author)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			if (id != author.Id)
+			if (Id != author.Id)
 			{
 				return BadRequest();
 			}
 
-			_context.Entry(author).State = EntityState.Modified;
+			var newArticle = await _authorAppService.PutAuthor(Id, author);
+			var newArticleDTO = ObjectMapper.Map<AuthorDTO>(newArticle);
 
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!AuthorExists(id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
-			}
-
-			return NoContent();
+			return Ok(newArticleDTO);
 		}
 
 		// POST: api/Authors
@@ -102,38 +86,28 @@ namespace TransportWiseBackEnd.Controllers
 				return BadRequest(ModelState);
 			}
 
-			var holder = _mapper.Map<AuthorModel>(author);
-			_context.Authors.Add(holder);
-			await _context.SaveChangesAsync();
+			var newAuthor = await _authorAppService.PostAuthor(author);
 
-			return CreatedAtAction("GetAuthor", new { id = author.Id }, author);
+			return Ok(newAuthor);
 		}
 
 		// DELETE: api/Authors/5
-		[HttpDelete("{id}")]
+		[HttpDelete("{Id}")]
 		[Authorize]
-		public async Task<IActionResult> DeleteAuthor([FromRoute] Guid id)
+		public async Task<IActionResult> DeleteAuthor([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var author = await _context.Authors.FindAsync(id);
+			var author = await _authorAppService.DeleteAuthor(Id);
 			if (author == null)
 			{
-				return NotFound();
+				return NotFound("Failed to delete, Author not found or invalid authorId.");
 			}
 
-			_context.Authors.Remove(author);
-			await _context.SaveChangesAsync();
-
 			return Ok(author);
-		}
-
-		private bool AuthorExists(Guid id)
-		{
-			return _context.Authors.Any(e => e.Id == id);
 		}
 	}
 }

@@ -10,8 +10,8 @@ using TransportWiseBackEnd.EntityFrameworkCore;
 namespace TransportWiseBackEnd.Migrations
 {
     [DbContext(typeof(TransportWiseBackEndDbContext))]
-    [Migration("20200411125244_test2")]
-    partial class test2
+    [Migration("20200412233228_test1")]
+    partial class test1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1036,70 +1036,112 @@ namespace TransportWiseBackEnd.Migrations
                     b.ToTable("AbpUsers");
                 });
 
-            modelBuilder.Entity("TransportWiseBackEnd.Models.ArticleModel", b =>
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Article", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired();
 
-                    b.Property<string>("Description");
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Image");
 
-                    b.Property<string>("Title");
+                    b.Property<DateTime?>("LastModificationTime");
 
-                    b.Property<string>("UserName");
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Article");
                 });
 
-            modelBuilder.Entity("TransportWiseBackEnd.Models.AuthorModel", b =>
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DriverExperience");
+                    b.Property<DateTime>("CreationTime");
 
-                    b.Property<string>("JobTitle");
+                    b.Property<long?>("CreatorUserId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Driverexperience")
+                        .IsRequired();
 
-                    b.Property<string>("Surname");
+                    b.Property<string>("Jobtitle");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Surname")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("TransportWiseBackEnd.Models.FileStorageModel", b =>
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.Filestorage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ContentType");
+                    b.Property<string>("Contentstype")
+                        .IsRequired();
 
-                    b.Property<string>("FilePath");
+                    b.Property<DateTime>("CreationTime");
 
-                    b.Property<string>("Name");
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Filename")
+                        .IsRequired();
+
+                    b.Property<string>("Filepath")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
 
                     b.HasKey("Id");
 
                     b.ToTable("FileStorage");
                 });
 
-            modelBuilder.Entity("TransportWiseBackEnd.Models.FuelWiseModel", b =>
+            modelBuilder.Entity("TransportWiseBackEnd.Domain.FuelWise", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AuthorId");
+                    b.Property<string>("Body")
+                        .IsRequired();
 
-                    b.Property<string>("Body");
+                    b.Property<DateTime>("CreationTime");
 
-                    b.Property<string>("Title");
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("Id");
 

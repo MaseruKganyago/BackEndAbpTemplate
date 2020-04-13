@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Abp.Application.Services.Dto;
 
-namespace TransportWiseBackEnd.Models.FileStorage
+namespace TransportWiseBackEnd.FileStorage.Dto
 {
-	public class FileStorageDTO
+	public class FilestorageDTO: AuditedEntityDto
 	{
 		public string Name { get; set; }
 		public string FilePath { get; set; }

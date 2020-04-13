@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Abp.Application.Services.Dto;
 
-namespace TransportWiseBackEnd.Models.FuelWise
+namespace TransportWiseBackEnd.FuelWise.Dto
 {
-	public class FuelWiseDTO
+	public class FuelwiseDTO: AuditedEntityDto
 	{
-		public Guid Id { get; set; }
 		public string Title { get; set; }
 		public string Body { get; set; }
 	}

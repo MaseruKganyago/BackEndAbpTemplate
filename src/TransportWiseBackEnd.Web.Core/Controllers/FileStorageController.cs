@@ -6,134 +6,111 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TransportWiseBackEnd.EntityFrameworkCore;
-using TransportWiseBackEnd.Models;
-using TransportWiseBackEnd.Models.FileStorage;
+using TransportWiseBackEnd.FileStorage;
+using TransportWiseBackEnd.FileStorage.Dto;
 
 namespace TransportWiseBackEnd.Controllers
 {
 	[Route("api/[controller]/[action]")]
 	public class FileStorageController : TransportWiseBackEndControllerBase
 	{
-		private readonly TransportWiseBackEndDbContext _context;
+		private readonly IFileAppService _fileAppService;
 		private readonly IMapper _mapper;
 
-		public FileStorageController(TransportWiseBackEndDbContext context, IMapper mapper)
+		public FileStorageController(IFileAppService fileAppService, IMapper mapper)
 		{
-			_context = context;
+			_fileAppService = fileAppService;
 			_mapper = mapper;
 		}
 
 		// GET: api/FileStorages
 		[HttpGet]
 		[Authorize]
-		public IEnumerable<FileStorageDTO> GetFileStorage()
+		public IEnumerable<FilestorageDTO> GetAllFiles()
 		{
-			var files = _context.FileStorage.ToList();
-			var filesDTO = _mapper.Map<List<FileStorageDTO>>(files);
+			var files = _fileAppService.GetAll();
+			var filesDTO = _mapper.Map<List<FilestorageDTO>>(files);
 
 			return filesDTO;
 		}
 
 		// GET: api/FileStorages/5
-		[HttpGet("{id}")]
+		[HttpGet("{Id}")]
 		[Authorize]
-		public async Task<ActionResult<FileStorageDTO>> GetFileStorage([FromRoute] Guid id)
+		public async Task<ActionResult<FilestorageDTO>> GetFile([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var file = await _context.FileStorage.FindAsync(id);
-			var fileDTO = _mapper.Map<FileStorageDTO>(file);
+			var file = await _fileAppService.GetFile(Id);
+
 
 			if (file == null)
 			{
 				return NotFound();
 			}
-
-			return Ok(file);
+			else
+			{
+				var fileDTO = _mapper.Map<FilestorageDTO>(file);
+				return Ok(fileDTO);
+			}
 		}
 
 		// PUT: api/FileStorages/5
-		[HttpPut("{id}")]
+		[HttpPut("{Id}")]
 		[Authorize]
-		public async Task<IActionResult> PutFileStorage([FromRoute] Guid id, [FromBody] FileStorageModel fileStorage)
+		public async Task<IActionResult> PutFileStorage([FromRoute] int Id, [FromBody] FilestorageDTO file)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			if (id != fileStorage.Id)
+			if (Id != file.Id)
 			{
 				return BadRequest();
 			}
 
-			_context.Entry(fileStorage).State = EntityState.Modified;
+			var newArticle = await _fileAppService.PutFile(Id, file);
+			var newArticleDTO = ObjectMapper.Map<FilestorageDTO>(newArticle);
 
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!FileStorageExists(id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
-			}
-
-			return NoContent();
+			return Ok(newArticleDTO);
 		}
 
 		// POST: api/FileStorages
 		[HttpPost]
 		[Authorize]
-		public async Task<IActionResult> PostFileStorage([FromBody] FileStorageModel fileStorage)
+		public async Task<IActionResult> PostFileStorage([FromBody] FilestorageDTO file)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			_context.FileStorage.Add(fileStorage);
-			await _context.SaveChangesAsync();
+			var newFile = await _fileAppService.PostFile(file);
 
-			return CreatedAtAction("GetFileStorage", new { id = fileStorage.Id }, fileStorage);
+			return Ok(newFile);
 		}
 
 		// DELETE: api/FileStorages/5
-		[HttpDelete("{id}")]
+		[HttpDelete("{Id}")]
 		[Authorize]
-		public async Task<IActionResult> DeleteFileStorage([FromRoute] Guid id)
+		public async Task<IActionResult> DeleteFile([FromRoute] int Id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var fileStorage = await _context.FileStorage.FindAsync(id);
-			if (fileStorage == null)
+			var file = await _fileAppService.DeleteFile(Id);
+			if (file == null)
 			{
-				return NotFound();
+				return NotFound("Failed to delete, Author not found or invalid authorId.");
 			}
 
-			_context.FileStorage.Remove(fileStorage);
-			await _context.SaveChangesAsync();
-
-			return Ok(fileStorage);
-		}
-
-		private bool FileStorageExists(Guid id)
-		{
-			return _context.FileStorage.Any(e => e.Id == id);
+			return Ok(file);
 		}
 	}
 }

@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20180927062408_test.cs" />
     <Compile Remove="Migrations\20190111071724_Upgraded_To_Abp_v4_1_0.cs" />
     <Compile Remove="Migrations\20200411112942_test1.cs" />
+    <Compile Remove="Migrations\20200412233124_test.cs" />
+    <Compile Remove="Migrations\20200413194715_test-done.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.0" />

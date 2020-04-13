@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using TransportWiseBackEnd.Domain;
 
-namespace TransportWiseBackEnd.Models.Articles.DTO
+namespace TransportWiseBackEnd.Articles.Dto
 {
 	public class ArticleMapProfile: Profile
 	{
 		public ArticleMapProfile()
 		{
-			CreateMap<ArticleModel, ArticleDTO>();
-			CreateMap<ArticleModel, ArticleDTO>()
+			CreateMap<Article, ArticleDTO>();
+			CreateMap<Article, ArticleDTO>()
 				.ForMember(dest =>
 				dest.Title,
 				opt => opt.MapFrom(src => src.Title))
@@ -24,8 +25,8 @@ namespace TransportWiseBackEnd.Models.Articles.DTO
 				dest.Image,
 				opt => opt.MapFrom(src => src.Image));
 
-			CreateMap<ArticleDTO, ArticleModel>();
-			CreateMap<ArticleDTO, ArticleModel>()
+			CreateMap<ArticleDTO, Article>();
+			CreateMap<ArticleDTO, Article>()
 				.ForMember(dest =>
 				dest.Title,
 				opt => opt.MapFrom(src => src.Title))
@@ -38,7 +39,6 @@ namespace TransportWiseBackEnd.Models.Articles.DTO
 				.ForMember(dest =>
 				dest.Image,
 				opt => opt.MapFrom(src => src.Image));
-
 
 		}
 	}
