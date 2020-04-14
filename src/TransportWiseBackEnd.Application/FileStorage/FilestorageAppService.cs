@@ -12,11 +12,11 @@ using TransportWiseBackEnd.FileStorage.Dto;
 
 namespace TransportWiseBackEnd.FileStorage
 {
-	public class FileAppService: ApplicationService, IFileAppService
+	public class FilestorageAppService: TransportWiseBackEndAppServiceBase, IFileAppService
 	{
 		private readonly IRepository<Filestorage> _fileRepository;
 
-		public FileAppService(IRepository<Filestorage> fileRepository)
+		public FilestorageAppService(IRepository<Filestorage> fileRepository)
 		{
 			_fileRepository = fileRepository;
 		}
