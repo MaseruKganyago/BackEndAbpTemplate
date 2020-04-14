@@ -12,7 +12,7 @@ using TransportWiseBackEnd.FuelWise.Dto;
 
 namespace TransportWiseBackEnd.FuelWise
 {
-	class FuelwiseAppService: ApplicationService, IFuelwiseAppService
+	class FuelwiseAppService: TransportWiseBackEndAppServiceBase, IFuelwiseAppService
 	{
 		private readonly IRepository<Fuelwise> _fuelwiseRepository;
 

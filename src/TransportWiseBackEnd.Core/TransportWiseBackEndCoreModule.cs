@@ -24,7 +24,7 @@ namespace TransportWiseBackEnd
             Configuration.Modules.Zero().EntityTypes.Role = typeof(Role);
             Configuration.Modules.Zero().EntityTypes.User = typeof(User);
 
-            TransportWiseBackEndLocalizationConfigurer.Configure(Configuration.Localization);
+			TransportWiseBackEndLocalizationConfigurer.Configure(Configuration.Localization);
 
             // Enable this line to create a multi-tenant application.
             Configuration.MultiTenancy.IsEnabled = TransportWiseBackEndConsts.MultiTenancyEnabled;
@@ -37,7 +37,7 @@ namespace TransportWiseBackEnd
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(TransportWiseBackEndCoreModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(TransportWiseBackEndCoreModule).Assembly);
         }
 
         public override void PostInitialize()
